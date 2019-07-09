@@ -4,8 +4,9 @@ Python Skew Corrector for Text Images
 
 ### Installation
 #### With pypi
+NOTE: This package isn't uploaded to pypi yet. After dynamic east detector implementation it will.
 ```
-pip install python-skew-correction
+pip install python-skew-correction 
 ```
 #### From source code
 ```
