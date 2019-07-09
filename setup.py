@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='python-skew-correction',
-    version='0.2',
+    version='0.4',
     description='Python Text Image Skew Correction',
     url='https://github.com/fatihsucu/python-skew-correction',
     author='Fatih Sucu',
@@ -12,5 +12,6 @@ setup(
     install_requires=[
         "opencv-contrib-python", "numpy", "nms", "Pillow"
     ],
+    include_package_data=True,
     zip_safe=False
 )

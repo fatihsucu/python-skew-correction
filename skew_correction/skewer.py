@@ -67,8 +67,8 @@ class Skewer:
             "feature_fusion/Conv_7/Sigmoid",
             "feature_fusion/concat_3"
         ]
-
-        net = cv2.dnn.readNet("skew_correction/resources/frozen_east_text_detection.pb")
+        path = os.path.abspath(os.path.dirname(__file__))
+        net = cv2.dnn.readNet(path + '/resources/frozen_east_text_detection.pb')
 
         blob = cv2.dnn.blobFromImage(self.image, 1.0, (imageWidth, imageHeight), (123.68, 116.78, 103.94), swapRB=True,
                                      crop=False)
