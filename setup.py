@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='python-skew-correction',
-    version='0.1',
+    version='0.2',
     description='Python Text Image Skew Correction',
     url='https://github.com/fatihsucu/python-skew-correction',
     author='Fatih Sucu',
