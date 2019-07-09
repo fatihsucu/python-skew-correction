@@ -21,12 +21,15 @@ class Skewer:
         if not any([image_url, image_path]) and not image_data.any():
             raise ImageNotFoundException("Couldn't find any image.")
 
-        if image_data.any():
-            image = image_data
-        elif image_url:
+        if image_url:
             image = url_to_image(image_url)
         elif image_path:
             image = path_to_image(image_path)
+        elif image_data.any():
+            image = image_data
+        else:
+            raise ImageNotFoundException("Couldn't find any image.")
+
         return image
 
     def draw_boxes(self, drawOn, boxes, ratioWidth, ratioHeight, color=(0, 255, 0), width=1):
