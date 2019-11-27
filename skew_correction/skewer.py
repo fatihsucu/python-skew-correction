@@ -2,9 +2,8 @@ import cv2
 import numpy as np
 from nms import nms
 from .utils import decode, url_to_image, path_to_image
-from .errors import ImageNotFoundException
+from .errors import ImageNotFoundException, ResourceNotFound
 import os
-
 
 class Skewer:
 
@@ -67,8 +66,21 @@ class Skewer:
             "feature_fusion/Conv_7/Sigmoid",
             "feature_fusion/concat_3"
         ]
-        path = os.path.abspath(os.path.dirname(__file__))
-        net = cv2.dnn.readNet(path + '/resources/frozen_east_text_detection.pb')
+        try:
+            path = os.path.abspath(os.path.dirname(__file__))
+            net = cv2.dnn.readNet(path + '/resources/frozen_east_text_detection.pb')
+        except FileNotFoundError:
+            raise ResourceNotFound(
+                """Frozen East Text Detector couldn't find in resources.
+                For download to resource:
+                >>> from skew_correction.data import download
+                >>> download()
+                
+                or 
+                
+                $ python -c 'from skew_correction.data import download; download();'
+                """
+            )
 
         blob = cv2.dnn.blobFromImage(self.image, 1.0, (imageWidth, imageHeight), (123.68, 116.78, 103.94), swapRB=True,
                                      crop=False)
